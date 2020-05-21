@@ -1,0 +1,106 @@
+link-
+
+https://cloud.ibm.com/services/speech-to-text/crn%3Av1%3Abluemix%3Apublic%3Aspeech-to-text%3Aeu-gb%3Aa%2Fd7b1f6ab95f94dd7a8d89e91605094c9%3Afbc3f4ac-71ac-42e0-ae17-8aa4aab4d337%3A%3A?paneId=gettingStarted&new=true
+
+Getting started with Speech to Text
+
+
+The IBM® Speech to Text service transcribes audio to text to enable speech transcription capabilities for applications. This curl-based tutorial can help you get started quickly with the service. The examples show you how to call the service's POST /v1/recognize method to request a transcript.
+
+Before you begin
+Copy the credentials to authenticate to your service instance:
+On the Manage page, click Show Credentials to view your credentials.
+Copy the API Key and URL values.
+Using the curl examples
+This tutorial uses the curl command to call methods of the service's HTTP interface. Make sure that you have the curl command installed on your system.
+
+To test whether curl is installed, run the following command on the command line. If the output lists the curl version that supports Secure Sockets Layer (SSL), you are set for the tutorial.
+
+
+curl -V
+If necessary, install the version of curl with SSL enabled for your operating system from curl.haxx.se.
+
+Omit the braces from the examples. They indicate variable values.
+
+Step 1: Transcribe audio with no options
+Call the POST /v1/recognize method to request a basic transcript of a FLAC audio file with no additional request parameters.
+
+Download the sample audio file audio-file.flac External link icon.
+Issue the following command to call the service's /v1/recognize method for basic transcription with no parameters. The example uses the Content-Type header to indicate the type of the audio, audio/flac. The example uses the default language model, en-US_BroadbandModel, for transcription.
+
+Modify {path_to_file} to specify the location of the audio-file.flac file.
+Windows users, replace the backslash (\) at the end of each line with a caret (^). Make sure there are no trailing spaces.
+
+
+curl -X POST -u "apikey:{apikey}" \
+--header "Content-Type: audio/flac" \
+--data-binary @{path_to_file}audio-file.flac \
+"{url}/v1/recognize"
+The service returns the following transcription results:
+
+
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "confidence": 0.96
+          "transcript": "several tornadoes touch down as a line of
+severe thunderstorms swept through Colorado on Sunday "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 0
+}
+Step 2: Transcribe audio with options
+Call the POST /v1/recognize method to transcribe the same FLAC audio file, but specify two transcription parameters.
+
+If necessary, download the sample audio file audio-file.flac External link icon.
+Issue the following command to call the service's /v1/recognize method with two extra parameters. Set the timestamps parameter to true to indicate the beginning and end of each word in the audio stream. Set the max_alternatives parameter to 3 to receive the three most likely alternatives for the transcription. The example uses the Content-Type header to indicate the type of the audio, audio/flac, and the request uses the default model, en-US_BroadbandModel.
+
+Modify {path_to_file} to specify the location of the audio-file.flac file.
+
+curl -X POST -u "apikey:{apikey}" \
+--header "Content-Type: audio/flac" \
+--data-binary @{path_to_file}audio-file.flac \
+"{url}/v1/recognize?timestamps=true&max_alternatives=3"
+The service returns the following results, which include timestamps and three alternative transcriptions:
+
+
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "timestamps": [
+            ["several":, 1.0, 1.51],
+            ["tornadoes":, 1.51, 2.15],
+            ["touch":, 2.15, 2.5],
+            . . .
+          ]
+        },
+        {
+          "confidence": 0.96
+          "transcript": "several tornadoes touch down as a line
+of severe thunderstorms swept through Colorado on Sunday "
+        },
+        {
+          "transcript": "several tornadoes touched down as a line
+of severe thunderstorms swept through Colorado on Sunday "
+        },
+        {
+          "transcript": "several tornadoes touch down as a line
+of severe thunderstorms swept through Colorado and Sunday "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 0
+}
+Next steps
+Learn more about the interfaces and SDKs that are available for making speech recognition requests in the Overview for developers.
+See basic speech recognition requests for each of the service's interfaces in Making a recognition request.
+Find detailed information about all methods of the service's interfaces in the API reference
