@@ -1,0 +1,76 @@
+link-
+https://cloud.ibm.com/services/discovery/crn%3Av1%3Abluemix%3Apublic%3Adiscovery%3Aeu-gb%3Aa%2Fd7b1f6ab95f94dd7a8d89e91605094c9%3A16162732-af5d-474e-9eca-b3f73a28efa2%3A%3A?paneId=gettingStarted
+
+Getting started with Discovery
+
+
+In this short tutorial, we introduce the Discovery tooling and go through the process of creating a private data collection and searching it.
+
+If you prefer to work in the API, see Getting started with the API.
+
+Step 1: Launch the tooling
+On the Manage page, click Launch Watson Discovery. If you're prompted to log in to the tooling, provide your IBM Cloud credentials.
+Step 2: Create a collection
+Your first step in the Discovery tooling is to create a data collection.
+
+A collection is a set of your documents. Why would I want more than one collection? There are a few reasons:
+
+You might want multiple collections to separate results for different audiences.
+The data might be so different that it doesn't make sense for it all to be queried at the same time.
+The public, pre-enriched Discovery News data collection is also available for your use. It is ready to query, and you can begin to create queries on it immediately. You cannot adjust its configuration or add documents to Discovery News.
+
+Click Environment details and choose Create environment.
+When your environment is ready, click the Upload your own data button, then you can Name your new collection. Name your collection InstallDocs.
+
+When creating a collection, under Advanced, you have the option to choose a configuration file named Default Contract Configuration. This configuration supports only the Element Classification enrichment, which can be used to extract party, nature, and category from elements in PDFs. See Element Classification for details. Do not choose this option for this tutorial.
+
+The Element Classification enrichment is deprecated and will no longer be available, effective 10 July 2020.
+
+You can also crawl Box, Salesforce, Microsoft SharePoint Online, IBM Cloud Object Storage, and Microsoft SharePoint 2016 data sources, or do a web crawl with the Discovery tooling. Click the Connect a data source button and see Connecting to data sources for more information.
+
+If you have recently deleted a Lite instance and then receive a 400 - Only one free environment is allowed per resource group error message when creating a new environment in a new Lite instance, you need to finish deleting the original Lite instance. See ibmcloud resource reclamations and follow the reclamation-delete instructions.
+
+Step 3: Download the sample document and upload to your collection
+Download this sample PDF document: Watson Explorer Installation Guide External link icon. See Supported document types for the full list of document types supported in Discovery.
+
+In some browsers, the link opens in a new window instead of saving locally. If this occurs, select Save As in your browser's File menu to save a copy of the file.
+
+Upload the document to your collection. Either drag and drop it into your collection, or click browse from computer to upload documents. After the upload is complete, the following information displays:
+
+The number of documents (1).
+The fields identified from your document. You should see one field identified, text. We identify additional fields in a bit.
+Enrichments applied to your document. The Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging enrichments are automatically applied to the text field by Discovery. For more information about enrichments, see Adding enrichments.
+Pre-built queries you can run immediately.
+Let's try a quick Natural Language Query to level set. Click Build your own query on the lower right.
+On the Build queries screen, click on Search for documents, then Use natural language. Enter What are the minimum hardware requirements and click the Run query button. Click the JSON tab on the right. The result is not as precise as it could be, so let's improve it with Smart Document Understanding.
+Click on the name of the collection (InstallDocs) on the upper left to return to the Overview screen.
+Step 4: Annotate your document
+For more information about annotating documents, see Smart Document Understanding.
+
+Click Configure data on the upper right.
+On the Configure data screen, there are three tabs: Identify fields, Manage fields, and Enrich fields.
+The Watson Explorer Installation Guide is displayed and ready for annotation on the Identify fields tab. All available fields (answer, author, footer, header, question, subtitle, table_of_contents, text, and title) are displayed in the Field labels list on the right. If you purchase an Advanced or Premium plan you can create your own custom labels.
+
+Since the entire document is currently identified as text, the markers on the right side are entirely in yellow. As you annotate (and the system starts predicting), the colors update.
+
+Click on title, then select the marker next to Installation and Integration Guide. Click Submit page.
+
+In the page preview on the left, click on page 3. Note that the title is already predicted for this page. Click Submit page.
+On page 4, select the footer label and select the marker next to the footer. Click the Submit page button.
+On pages 5 and 6, annotate the footers with the footer label. Submit each page. Click through a few more pages; note that the footer was predicted properly by Discovery. Annotate the titles (flush left) and subtitles (indented) on pages 7, 9, and 10 and submit each page individually.
+Click through a few more pages and check the predicted titles and subtitles. If any need to be changed, annotate those pages, and click Submit page.
+Now click on the Manage fields tab and under Improve query results by splitting your documents split the document, based on subtitle.
+Click the Apply changes to collection button on the top right. An Upload your documents dialog box appears. Browse to the original watsonexplorerinstall.pdf file, and upload it. All of the annotations are applied to your index. After it finishes indexing, the Overview screen opens. Expect to now see more than 30 documents and 4 fields identified from your data: footer, subtitle, text, and title. If the changes do not display within a few minutes, refresh the browser window.
+
+You can exclude fields, such as footer, from being indexed by opening the Manage fields tab and toggling that field off.
+
+Step 5: Let's query
+Click Build your own query on the bottom right.
+On the Build queries screen, click on Search for documents, then Use natural language. Enter What are the minimum hardware requirements and click the Run query button.
+Click the JSON tab on the right. Look at the text under results. The answers returned for the query are much more precise.
+Additional resources:
+
+To learn more about the data schema of your documents, click the View Data Schema icon or click on the JSON tab. See the Discovery data schema for details.
+Click the Use a sample query button to try out example queries written in the Discovery Query Language.
+Next steps
+Now, you have a functioning and populated Discovery instance. You can now begin customizing your collection by adding more documents and enrichments, and annotating additional documents. See Smart Document Understanding for more information.
