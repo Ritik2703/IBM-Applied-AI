@@ -1,0 +1,10 @@
+
+Step 1: Analyze a webpage
+cmd command-
+
+curl -X POST -u "apikey:{apikey}" --header "Content-Type: application/json" --data "{\"url\":\"http://newsroom.ibm.com/Guerbet-and-IBM-Watson-Health-Announce-Strategic-Partnership-for-Artificial-Intelligence-in-Medical-Imaging-Liver\",\"features\":{\"sentiment\":{},\"categories\":{},\"concepts\":{},\"entities\":{},\"keywords\":{}}}" "{url}/v1/analyze?version=2019-07-12"
+
+Step 2: Analyze target phrases and keywords
+cmd command-
+
+curl -X POST -u "apikey:{apikey}" --header "Content-Type: application/json" --data "{\"text\":\"I love apples! I do not like oranges.\",\"features\":{\"sentiment\":{\"targets\":[\"apples\",\"oranges\",\"broccoli\"]},\"keywords\":{\"emotion\":true}}}" "{url}/v1/analyze?version=2019-07-12"
