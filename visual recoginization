@@ -1,0 +1,154 @@
+link-
+
+https://cloud.ibm.com/services/watson-vision-combined/crn%3Av1%3Abluemix%3Apublic%3Awatson-vision-combined%3Aus-south%3Aa%2Fd7b1f6ab95f94dd7a8d89e91605094c9%3A2184828d-abdc-4dd1-bcff-b30d81aebfa4%3A%3A?paneId=gettingStarted&bss_account=d7b1f6ab95f94dd7a8d89e91605094c9
+
+This tutorial guides you through simple image recognition with IBM Watson™ Visual Recognition. You use the built-in models to analyze the images.
+
+To work in a graphical interface where you can create your own custom models, use Watson Studio and follow the video.
+
+Before you begin
+Make sure that you have the curl command.
+
+Test whether curl is installed. Run the following command on the command line. If the output lists the curl version with SSL support, you are set for the tutorial.
+
+
+  curl -V
+If necessary, install a version with SSL enabled from curl.haxx.se. Add the location of the file to your PATH environment variables if you want to run curl from any command-line location.
+
+IBM Cloud Dedicated plans authenticate by using -u "{username}:{password}" instead of -u "apikey:{apikey}". Use the username and password values for your instance in the examples in this tutorial.
+
+Step 1: Classify an image
+Issue the following call to classify an image.
+
+curl -u "apikey:" "/v3/classify?url=https://ibm.biz/BdzLPG&version=2018-03-19"
+The response includes the classes that are identified in the image from the built-in General model ("classifier_id": "default") and a confidence score for each class. The score represents a percentage, and higher values represent higher confidences. By default, responses from the Classify calls don't include classes with a score below 0.5 (50%).
+
+
+{
+  "images": [
+    {
+      "classifiers": [
+        {
+          "classifier_id": "default",
+          "name": "default",
+          "classes": [
+            {
+              "class": "circuit board",
+              "score": 0.578,
+              "type_hierarchy": "/electrical device/computer circuit/circuit board"
+            },
+            {
+              "class": "computer circuit",
+              "score": 0.755
+            },
+            {
+              "class": "electrical device",
+              "score": 0.757
+            },
+            {
+              "class": "disk controller",
+              "score": 0.553,
+              "type_hierarchy": "/controller/disk controller"
+            },
+            {
+              "class": "controller",
+              "score": 0.558
+            },
+            {
+              "class": "central processing unit",
+              "score": 0.535
+            },
+            {
+              "class": "PC board",
+              "score": 0.501,
+              "type_hierarchy": "/electrical device/computer circuit/PC board"
+            },
+            {
+              "class": "CPU board",
+              "score": 0.5,
+              "type_hierarchy": "/electrical device/computer circuit/CPU board"
+            },
+            {
+              "class": "electronic equipment",
+              "score": 0.6
+            },
+            {
+              "class": "memory device",
+              "score": 0.599
+            },
+            {
+              "class": "microchip",
+              "score": 0.592
+            },
+            {
+              "class": "jade green color",
+              "score": 0.838
+            },
+            {
+              "class": "emerald color",
+              "score": 0.787
+            }
+          ]
+        }
+      ],
+      "source_url": "https://watson-developer-cloud.github.io/doc-tutorial-downloads/visual-recognition/640px-IBM_VGA_90X8941_on_PS55.jpg",
+      "resolved_url": "https://watson-developer-cloud.github.io/doc-tutorial-downloads/visual-recognition/640px-IBM_VGA_90X8941_on_PS55.jpg"
+    }
+  ],
+  "images_processed": 1,
+  "custom_classes": 0
+}
+Step 2: Classify with the Food model
+Visual Recognition also includes a built-in Food model that might be more accurate for your images with food items.
+
+Issue a call to classify an image of food against the Food model.
+
+curl -u "apikey:" -F "classifier_ids=food" "/v3/classify?url=https://ibm.biz/Bd2NPs&version=2018-03-19"
+The service returns the following results. You can see that the classifier_id is identified as food. The classes that the service identified are also different from the first response.
+
+{
+  "images": [
+    {
+      "classifiers": [
+        {
+          "classifier_id": "food",
+          "name": "food",
+          "classes": [
+            {
+              "class": "apple",
+              "score": 0.572,
+              "type_hierarchy": "/fruit/accessory fruit/apple"
+            },
+            {
+              "class": "accessory fruit",
+              "score": 0.572
+            },
+            {
+              "class": "fruit",
+              "score": 0.805
+            },
+            {
+              "class": "banana",
+              "score": 0.5,
+              "type_hierarchy": "/fruit/banana"
+            }
+          ]
+        }
+      ],
+      "source_url": "https://watson-developer-cloud.github.io/doc-tutorial-downloads/visual-recognition/fruitbowl.jpg",
+      "resolved_url": "https://watson-developer-cloud.github.io/doc-tutorial-downloads/visual-recognition/fruitbowl.jpg"
+    }
+  ],
+  "images_processed": 1,
+  "custom_classes": 0
+}
+Next steps
+You have a basic understanding of how to use built-in classifiers for image recognition with Visual Recognition. Now dive deeper:
+
+Try these calls with your own images. Keep the image size under 10 MB.
+Learn more about how to build a custom model.
+Read about the API in the API reference.
+Attributions
+IBM VGA 90X8941 on PS55.jpg by Darklanlan used under CC BY 4.0. No changes were made to this image.
+Fruit basket by Flikr user Ryan Edwards-Crewe used under Creative Commons Attribution 2.0 license. No changes were made to this image.
+Ginni Rometty at the Fortune MPW Summit in 2011 by Asa Mathat / Fortune Live Media used under CC BY 2.0
