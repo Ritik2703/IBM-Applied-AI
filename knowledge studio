@@ -1,0 +1,142 @@
+link-
+https://cloud.ibm.com/services/knowledge-studio/crn%3Av1%3Abluemix%3Apublic%3Aknowledge-studio%3Aeu-de%3Aa%2Fd7b1f6ab95f94dd7a8d89e91605094c9%3A3818617c-cf27-4a1c-9b34-45704a8e9c90%3A%3A?paneId=manage&new=true
+
+Getting started with Knowledge Studio
+
+This IBM Watson™ Knowledge Studio tutorial helps you perform prerequisite tasks that must be completed before you can start any of the other tutorials.
+
+Before you begin
+Confirm you're using a supported browser. For information, see Browser requirements.
+Confirm that you have at least one user ID that you can use in Knowledge Studio. This user ID must have the Admin role. If you sign up for a Lite plan, as the only user, you will have the Admin role. For information about user roles, see Assembling a team.
+Creating a service instance
+If you haven't already, sign up for an IBMid External link icon and log in to IBM Cloud.
+Go to the Knowledge Studio page in the IBM Cloud catalog.
+Select a pricing plan, and click Create.
+Launching the Knowledge Studio application
+After creating a service instance, the user who created the service instance and any users with IBM Cloud roles that allow access to the service instance will be able to launch the Knowledge Studio application with the following steps.
+
+Go to the IBM Cloud resources External link icon page. Log in with your IBMid.
+Select Services and click on your Knowledge Studio service instance to open the Knowledge Studio service dashboard.
+Click Launch tool from the Manage page.
+After you launch Knowledge Studio, you can copy the URL and use it to launch the application directly.
+
+Example URL:
+
+https://gateway.watsonplatform.net/knowledge-studio/tools/app/zefz11/enf01h9le5c63p50/ui/#/`
+If you want to add users to Knowledge Studio but don't want to grant them an IBM Cloud role that allows access to your service instance, share the application URL to provide access to the application.
+
+Lesson 1: Assigning user roles
+In this lesson, you will learn about the different roles that you can assign to users in Knowledge Studio.
+
+About this task
+The creation of a machine learning model requires input from subject matter experts, project managers, and users who can understand and interpret statistical models. Administrators assign roles to each user, such that they have appropriate authority for their tasks. For more information about user roles, see Assembling a team.
+
+Procedure
+Log in to Knowledge Studio with your administrator ID. If you have an existing Knowledge Studio instance, you can find it on the IBM Cloud resources page External link icon under Services.
+Click the Settings icon to open the Service Details page. The page lists all the user IDs that are registered as Knowledge Studio users. Each user ID has one of the following roles (in decreasing order of included permissions):
+
+Admin
+Project Manager
+Human Annotator
+
+For information about user roles, see User roles in Knowledge Studio.
+
+Verify that there is at least one user with the Admin role. A user ID with this role can create workspaces, and act as a project manager or human annotator.
+
+If you have access to additional user IDs, verify that there are at least two users with the Human Annotator role.
+
+Creating a real-life model typically involves multiple human annotators in addition to an administrator or project manager. However, for purposes of the tutorial, you can continue with a single user ID.
+
+Optional: Change the role that is assigned to a user ID. From the Action column of the table, click the Edit link, an then change the assigned user role.
+
+You can upgrade a user ID to a role with greater permissions, but you cannot downgrade a user with an Admin or Project Manager role to the Human Annotator role.
+
+Lesson 2: Creating a workspace
+In this lesson, you will learn how to create a workspace within Knowledge Studio.
+
+About this task
+A workspace defines all the resources that are required to create a machine learning model, including training documents, the type system, dictionaries, and annotations that are added by human annotators. For more information about workspace creation, see Creating a workspace.
+
+Procedure
+As a Knowledge Studio administrator, from your IBM Cloud resources External link icon page, click the Knowledge Studio service instance under Services.
+Click Launch tool from the Manage page.
+Click Create Workspace.
+Specify the details for the new workspace:
+
+In the Workspace name field, type My workspace.
+In the Workspace description field, type Watson Knowledge Studio tutorial workspace.
+In the Language of documents field, use the default value, English. The sample files you will be using for this tutorial are in English.
+Click Create.
+Results
+The workspace is created and opens automatically.
+
+What to do next
+You can now start configuring the workspace resources, such as the type system.
+
+Lesson 3: Creating a type system
+In this lesson, you will learn how to upload and modify a type system within Knowledge Studio. You must create or upload a type system before you begin any annotation tasks.
+
+About this task
+For more information about type systems, see Type systems.
+
+Procedure
+Download the en-klue2-types.json External link icon file to your computer. This file contains an example KLUE type system.
+Click Assets> Entity Types.
+On the Entity Types page, click Upload.
+Upload the en-klue2-types.json file from your computer. The uploaded type system is displayed in the table.
+Browse the type system so you can see the data that was uploaded.
+Edit an entity type:
+
+Locate the MONEY entity type.
+Double-click anywhere in the table row to edit the entity type.
+In the Roles column, click the Delete a role icon The "Delete a role" icon. next to the AWARD role.
+
+A screen capture of deleting a role from an entity type.
+
+Click Save.
+
+What to do next
+After you finish making changes to the type system, you can begin adding documents to your workspace.
+
+Lesson 4: Adding a dictionary
+In this lesson, you will learn how to add a dictionary to a workspace in Knowledge Studio. Dictionaries are used for pre-annotating text when creating a machine learning model.
+
+About this task
+For more information about dictionaries, see Adding dictionaries to a workspace.
+
+Procedure
+Download the dictionary-items-organization.csv External link icon file to your computer. This file contains dictionary terms in CSV format, suitable for uploading into a Knowledge Studio dictionary.
+Click Assets > Dictionaries.
+Click Create Dictionary to add a dictionary.
+
+Do not click Upload dictionary, which is used to upload a dictionary that you want to use as-is. For the tutorial, you will create a new editable dictionary and then upload terms into it.
+
+In the Name field, type Test dictionary and click Save to create the (empty) dictionary.
+
+The new dictionary is created and automatically opened for editing.
+
+In the dictionary pane, click Upload.
+
+Upload the dictionary-items-organization.csv file from your computer. The terms in the file are uploaded into the dictionary.
+Click Add Entry to create a new term. An editable row is added at the top of the table.
+In the Surface Forms column, type IBM and International Business Machines Corporation on separate lines. (When you begin to type a new surface form, a space is added below for an additional surface form.) Leave the radio button next to IBM selected, which indicates that IBM is the lemma.
+In the Part of Speech column, select Noun.
+Click Save.
+
+A screen capture of the Dictionaries page. The "IBM" dictionary entry is selected and its surface forms and part of speech are highlighted.
+
+What to do next
+After you create a dictionary, you can use it to speed up human annotation tasks by pre-annotating the documents.
+
+Next steps
+Learn how to create a machine learning model.
+
+Tutorial summary
+While learning about Knowledge Studio, you created a workspace and added artifacts to it.
+
+Lessons learned
+By completing this tutorial, you learned about the following concepts:
+
+Workspaces
+Type systems
+Dictionaries
